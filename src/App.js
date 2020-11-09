@@ -1,22 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import io from "socket.io-client";
 
 function App() {
+  const [connected, setConnected] = useState(false);
+
+  const socket = io("http://localhost:3000");
+  socket.on("connect", () => setConnected(true));
+  socket.on("error", (error) => console.log("error: " + error));
+  socket.on("disconnect", () => console.log("disconnect"));
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>{connected ? "Connected" : "Connecting to server"}</p>
       </header>
     </div>
   );
