@@ -1,0 +1,40 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  color: #fff;
+  background-color: #50aadd;
+  opacity: 0.8;
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.resultText {
+  font-size: 48px;
+  font-weight: bold;
+  color: #fff;
+  padding: 24px;
+}
+
+.newGameButton {
+  font-size: 18px;
+  padding: 16px 72px;
+  border: none;
+  border-radius: 36px;
+  outline: none;
+  font-weight: bold;
+  background-color: #fff;
+  color: #50aadd;
+}

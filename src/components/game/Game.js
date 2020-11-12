@@ -1,39 +1,32 @@
-import React from "react";
-import Grid from "@material-ui/core/Grid";
-import List from "@material-ui/core/List";
-import Message from "../message/Message";
 import styles from "./game.module.css";
+import AppBar from "@material-ui/core/AppBar";
+import Fab from "@material-ui/core/Fab";
+import Typography from "@material-ui/core/Typography";
+import ChatLayout from "../chat-layout/ChatLayout";
 
-const Game = () => {
-  const user = { name: "Szabolcs Bihary", avatar: "/image/avatar.png" };
-  const calculation = "[(-1 + 19) / 3] = 6";
-  const result = 6;
+function Game() {
   return (
-    <div className={styles.messageContainer}>
-      <Grid item xs={12}>
-        <List>
-          <Message
-            leftAlign={true}
-            user={user}
-            calculation={calculation}
-            result={result}
-          />
-          <Message
-            leftAlign={false}
-            user={user}
-            calculation={calculation}
-            result={result}
-          />
-          <Message
-            leftAlign={true}
-            user={user}
-            calculation={calculation}
-            result={result}
-          />
-        </List>
-      </Grid>
+    <div className={styles.container}>
+      <AppBar className={styles.header}>
+        <Typography variant="h4">Scoober team</Typography>
+        <Typography variant="subtitle1">Win the game or win the job</Typography>
+      </AppBar>
+      <div className={styles.content}>
+        <ChatLayout />
+      </div>
+      <div className={styles.footer} my={4}>
+        <Fab color="primary" aria-label="add minus one">
+          -1
+        </Fab>
+        <Fab color="primary" aria-label="add zero">
+          0
+        </Fab>
+        <Fab color="primary" aria-label="add plus one">
+          +1
+        </Fab>
+      </div>
     </div>
   );
-};
+}
 
 export default Game;
