@@ -1,0 +1,15 @@
+.header {
+  position: fixed;
+}
+
+.content {
+  padding-top: 70px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
