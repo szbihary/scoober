@@ -1,7 +1,6 @@
 import styles from "./result.module.css";
-import Button from "@material-ui/core/Button";
 
-function Result({ success }) {
+function Result({ success, reset }) {
   const resultMessage = success ? "You won" : "You lose";
   return (
     <>
@@ -9,7 +8,9 @@ function Result({ success }) {
       <div className={styles.container}>
         <img alt="won" src={success ? "/image/won.png" : "/image/lose.png"} />
         <div className={styles.resultText}>{resultMessage}</div>
-        <button className={styles.newGameButton}>New Game</button>
+        <button className={styles.newGameButton} onClick={() => reset()}>
+          New Game
+        </button>
       </div>
     </>
   );

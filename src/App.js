@@ -1,7 +1,10 @@
 // import { useState } from "react";
 // import io from "socket.io-client";
 import Game from "./components/game/Game";
-import Result from "./components/result/Result";
+import { Provider } from "react-redux";
+import configureStore from "./redux/configureStore";
+
+const store = configureStore();
 
 function App() {
   // const [connected, setConnected] = useState(false);
@@ -13,10 +16,9 @@ function App() {
   // socket.on("disconnect", () => console.log("disconnect"));
 
   return (
-    <>
+    <Provider store={store}>
       <Game />
-      <Result success={false} />
-    </>
+    </Provider>
   );
 }
 

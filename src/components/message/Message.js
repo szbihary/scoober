@@ -4,7 +4,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Fab from "@material-ui/core/Fab";
 import styles from "./message.module.css";
 
-const Message = ({ leftAlign, user, calculation, result }) => {
+const Message = ({ leftAlign, user, calculation, result, bid }) => {
   return (
     <>
       <ListItem>
@@ -14,12 +14,16 @@ const Message = ({ leftAlign, user, calculation, result }) => {
           spacing={1}
         >
           <Grid item>
-            <Avatar alt={user.name} src={user.avatar} />
+            <Avatar
+              alt={user.name}
+              src={user.avatar}
+              className={styles.avatar}
+            />
           </Grid>
           <Grid item>
             <Grid container direction="column">
               <Grid item align={leftAlign ? "left" : "right"}>
-                <Fab color="primary">+19</Fab>
+                <Fab color="primary">{bid}</Fab>
               </Grid>
               <Grid item>
                 <div className={styles.messageBox}>{calculation}</div>
