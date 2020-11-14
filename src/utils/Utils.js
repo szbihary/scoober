@@ -7,3 +7,7 @@ export function getResult(initialNumber, steps) {
     return sum;
   }, initialNumber);
 }
+
+export function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}

@@ -1,13 +1,13 @@
 import * as types from "../actions/actionTypes";
-import { getResult } from "../../utils/Utils";
+import { getResult, getRandomInt } from "../../utils/Utils";
 
-const INIT_STATE = {
+const getInitState = () => ({
   gameState: "started",
-  initialNumber: 19,
+  initialNumber: getRandomInt(0, 100),
   steps: [],
-};
+});
 
-export default function gameReducer(state = INIT_STATE, action) {
+export default function gameReducer(state = getInitState(), action) {
   switch (action.type) {
     case types.ROUND:
       let gameState = state.gameState;
@@ -19,7 +19,7 @@ export default function gameReducer(state = INIT_STATE, action) {
       }
       return { ...state, steps, gameState };
     case types.RESET:
-      return { ...INIT_STATE };
+      return getInitState();
     default:
       return state;
   }

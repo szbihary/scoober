@@ -7,32 +7,22 @@ import styles from "./message.module.css";
 const Message = ({ leftAlign, user, calculation, result, bid }) => {
   return (
     <>
-      <ListItem>
-        <Grid
-          container
-          direction={leftAlign ? "row" : "row-reverse"}
-          spacing={1}
-        >
-          <Grid item>
-            <Avatar
-              alt={user.name}
-              src={user.avatar}
-              className={styles.avatar}
-            />
-          </Grid>
-          <Grid item>
-            <Grid container direction="column">
-              <Grid item align={leftAlign ? "left" : "right"}>
-                <Fab color="primary">{bid}</Fab>
-              </Grid>
-              <Grid item>
-                <div className={styles.messageBox}>{calculation}</div>
-                <div className={styles.messageBox}>{result}</div>
-              </Grid>
+      <Grid container direction={leftAlign ? "row" : "row-reverse"} spacing={1}>
+        <Grid item>
+          <Avatar alt={user.name} src={user.avatar} className={styles.avatar} />
+        </Grid>
+        <Grid item>
+          <Grid container direction="column">
+            <Grid item align={leftAlign ? "left" : "right"}>
+              <Fab color="primary">{bid}</Fab>
+            </Grid>
+            <Grid item>
+              <div className={styles.messageBox}>{calculation}</div>
+              <div className={styles.messageBox}>{result}</div>
             </Grid>
           </Grid>
         </Grid>
-      </ListItem>
+      </Grid>
     </>
   );
 };

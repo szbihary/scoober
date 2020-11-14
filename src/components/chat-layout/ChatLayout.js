@@ -6,8 +6,8 @@ import styles from "./chatLayout.module.css";
 import { getResult } from "../../utils/Utils";
 
 const ChatLayout = ({ steps, initialNumber }) => {
-  const user = { name: "Szabolcs Bihary", avatar: "/image/avatar.png" };
-  const user2 = { name: "Takeaway", avatar: "/image/avatar2.png" };
+  const user = { name: "Other player", avatar: "/image/avatar.png" };
+  const user2 = { name: "Me", avatar: "/image/avatar2.png" };
 
   const messages = steps.map((step, index, steps) => {
     const isOwnPlayer = index % 2 === 0;

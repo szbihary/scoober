@@ -8,6 +8,12 @@ import { bindActionCreators } from "redux";
 import * as actionCreators from "../../redux/actions/actionCreators";
 import Result from "../result/Result";
 
+const bidOptions = [
+  { value: -1, title: "add minus one" },
+  { value: 0, title: "add zero" },
+  { value: +1, title: "add plus one" },
+];
+
 function Game(props) {
   return (
     <div className={styles.container}>
@@ -19,38 +25,21 @@ function Game(props) {
         <ChatLayout steps={props.steps} initialNumber={props.initialNumber} />
       </div>
       <div className={styles.footer} my={4}>
-        <Fab
-          color="primary"
-          aria-label="add minus one"
-          onClick={() => {
-            props.actions.nextRound(-1);
-          }}
-        >
-          -1
-        </Fab>
-        <Fab
-          color="primary"
-          aria-label="add zero"
-          onClick={() => {
-            props.actions.nextRound(0);
-          }}
-        >
-          0
-        </Fab>
-        <Fab
-          color="primary"
-          aria-label="add plus one"
-          onClick={() => {
-            props.actions.nextRound(+1);
-          }}
-        >
-          +1
-        </Fab>
+        {bidOptions.map((bid, index) => (
+          <Fab
+            key={index}
+            color="primary"
+            aria-label={bid.title}
+            onClick={() => props.actions.nextRound(bid.value)}
+          >
+            {bid.value}
+          </Fab>
+        ))}
       </div>
       {props.gameState === "ended" && (
         <Result
           reset={() => props.actions.resetGame()}
-          success={props.steps.length % 2 === 1}
+          success={props.steps.length % 2 === 0}
         />
       )}
     </div>
