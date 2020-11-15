@@ -6,5 +6,10 @@
 }
 
 .avatar {
-  background-color: #50aadd;
+  background-color: #2196f3;
+}
+
+.avatar .MuiAvatar-img {
+  width: auto;
+  height: auto;
 }

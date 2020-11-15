@@ -19,9 +19,9 @@ io.on("connection", (socket) => {
       }
     });
 
-    socket.on("startGame", () => {
-      // send start signal to all players
-      io.emit("startGame");
+    socket.on("resetGame", () => {
+      // send reset signal to all players
+      io.emit("resetGame");
     });
 
     socket.on("nextBid", (bid) => {

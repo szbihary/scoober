@@ -1,12 +1,8 @@
 import * as types from "../actions/actionTypes";
-import { getResult, getRandomInt } from "../../utils/Utils";
-import { RANDOM_INT_MIN, RANDOM_INT_MAX } from "../../config";
-
-getRandomInt(RANDOM_INT_MIN, RANDOM_INT_MAX);
+import { getResult } from "../../utils/Utils";
 
 const getInitState = () => ({
   gameState: "connected",
-  initialNumber: 49,
   steps: [],
 });
 
@@ -16,7 +12,7 @@ export default function gameReducer(state = getInitState(), action) {
       const round = action.payload;
       let gameState = state.gameState;
       const steps = [...state.steps, round];
-      const result = getResult(state.initialNumber, steps);
+      const result = getResult(steps);
       if (result === 1) {
         gameState = "ended";
       }

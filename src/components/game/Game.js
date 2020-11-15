@@ -8,7 +8,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actionCreators from "../../redux/actions/actionCreators";
 import Result from "../result/Result";
+import Menu from "../menu/Menu";
 import { BID_OPTIONS } from "../../config";
+import { getRandomInt } from "../../utils/Utils";
+import { RANDOM_INT_MIN, RANDOM_INT_MAX } from "../../config";
 
 class Game extends React.Component {
   constructor(props) {
@@ -17,7 +20,7 @@ class Game extends React.Component {
   }
 
   componentDidMount() {
-    this.socket.on("startGame", () => this.props.actions.resetGame());
+    this.socket.on("resetGame", () => this.props.actions.resetGame());
 
     this.socket.on("nextRound", (round) => {
       const player = round.player === this.socket.id ? "me" : "opponent";
@@ -27,44 +30,47 @@ class Game extends React.Component {
   }
 
   render() {
-    const content = this.props.initialNumber ? (
-      <ChatLayout
-        steps={this.props.steps}
-        initialNumber={this.props.initialNumber}
-      />
-    ) : (
-      <div>Loading game...</div>
-    );
-
     const lastStep = this.props.steps[this.props.steps.length - 1];
     const lastStepWasMe = lastStep && lastStep.player === "me";
+    const content =
+      this.props.steps.length === 0 ? (
+        <Menu
+          handleStartGameClick={() => {
+            const initialNumber = getRandomInt(RANDOM_INT_MIN, RANDOM_INT_MAX);
+            this.socket.emit("nextBid", initialNumber);
+          }}
+        />
+      ) : (
+        <>
+          <ChatLayout steps={this.props.steps} />
+          <div className={styles.footer} my={4}>
+            {BID_OPTIONS.map((bid, index) => (
+              <Fab
+                key={index}
+                color="primary"
+                disabled={lastStepWasMe}
+                aria-label={bid.title}
+                onClick={() => this.socket.emit("nextBid", bid.value)}
+              >
+                {bid.value > 0 ? `+${bid.value}` : bid.value}
+              </Fab>
+            ))}
+          </div>
+        </>
+      );
+
     return (
       <div className={styles.container}>
         <AppBar className={styles.header}>
-          <Typography variant="h4">Scoober team</Typography>
+          <Typography variant="h5">Scoober team</Typography>
           <Typography variant="subtitle1">
             Win the game or win the job
           </Typography>
         </AppBar>
         <div className={styles.content}>{content}</div>
-        <div className={styles.footer} my={4}>
-          {BID_OPTIONS.map((bid, index) => (
-            <Fab
-              key={index}
-              color="primary"
-              disabled={lastStepWasMe}
-              aria-label={bid.title}
-              onClick={() => {
-                this.socket.emit("nextBid", bid.value);
-              }}
-            >
-              {bid.value}
-            </Fab>
-          ))}
-        </div>
         {this.props.gameState === "ended" && (
           <Result
-            reset={() => this.socket.emit("startGame")}
+            reset={() => this.socket.emit("resetGame")}
             success={lastStepWasMe}
           />
         )}
@@ -76,7 +82,6 @@ class Game extends React.Component {
 function mapStateToProps(state) {
   return {
     steps: state.steps,
-    initialNumber: state.initialNumber,
     gameState: state.gameState,
   };
 }

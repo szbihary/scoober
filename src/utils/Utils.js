@@ -1,11 +1,11 @@
-export function getResult(initialNumber, steps) {
+export function getResult(steps) {
   return steps.reduce((result, step) => {
     const sum = result + step.value;
     if (sum % 3 === 0) {
       return sum / 3;
     }
     return sum;
-  }, initialNumber);
+  }, 0);
 }
 
 export function getRandomInt(min, max) {
