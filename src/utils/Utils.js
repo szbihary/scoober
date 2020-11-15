@@ -1,6 +1,6 @@
 export function getResult(initialNumber, steps) {
-  return steps.reduce((result, nextValue) => {
-    const sum = result + nextValue;
+  return steps.reduce((result, step) => {
+    const sum = result + step.value;
     if (sum % 3 === 0) {
       return sum / 3;
     }
