@@ -18,9 +18,9 @@
   },
   "proxy": "http://localhost:8080",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently --kill-others-on-fail npm:start:server npm:start:ui",
+    "start:ui": "react-scripts start",
     "start:server": "cd src/server/ && npm run start",
-    "start:dev": "concurrently --kill-others-on-fail npm:start:server npm:start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
