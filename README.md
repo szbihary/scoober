@@ -9,6 +9,7 @@ approach of starting the game. The receiving player can then choose between addi
 order to get to a number that is divisible by 3. If the remainder is 0 then the resulting whole number is then sent back to the original
 sender. Otherwise the number is not divided and the original number is sent back.
 The same rules are applied until one player reaches the number 1. That player wins the game.
+It currently supports multiplayer mode only.
 
 ## Requirements
 
