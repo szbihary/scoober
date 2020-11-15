@@ -10,13 +10,19 @@ order to get to a number that is divisible by 3. If the remainder is 0 then the 
 sender. Otherwise the number is not divided and the original number is sent back.
 The same rules are applied until one player reaches the number 1. That player wins the game.
 
+## Requirements
+
+- Node.js - Use LTS version
+
 ## Setup game
 
 `npm install` - install dependencies
 
-`cd ./src/server` - go to server directory
+`cd ./src/server` - go to the server directory
 
 `npm install` - install server dependencies
+
+`cd ../..` - go to the root directory
 
 `npm start` - start the game ;)
 
